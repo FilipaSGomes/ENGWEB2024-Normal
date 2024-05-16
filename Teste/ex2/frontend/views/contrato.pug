@@ -1,0 +1,19 @@
+extends index
+
+block content
+    h1= titulo 
+      table
+        p Id : #{contrato["_id"]}
+        p Anuncio: #{contrato["nAnuncio"]}
+        p Tipo de Contrato: #{contrato["tipoprocedimento"]}
+        p Contrato: #{contrato["objectoContrato"]}
+        p Data de Publicação: #{contrato["dataPublicacao"]}
+        p Data de Celebração: #{contrato["dataCelebracaoContrato"]}
+        p Preço Contratual: #{contrato["precoContratual"]}
+        p Prazo de Execução: #{contrato["prazoExecucao"]}
+        p NIPC Entidade Comunicante: #{contrato["NIPC_entidade_comunicante"]}
+        p Entidade Comunicante: #{contrato["entidade_comunicante"]}
+        p Fundamentação: #{contrato["fundamentacao"]}
+        a(href='/' + contrato["_id"] + '/edit') Editar
+        a(href='/' + contrato["_id"] + '/delete') Eliminar
+        a(href='/') Voltar
