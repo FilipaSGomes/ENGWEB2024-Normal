@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 
 const contratosSchema = new mongoose.Schema({
-    _id: String,
+    _id: Number,
     nAnuncio: String,
     tipoprocedimento: String,
     objectoContrato: String,
