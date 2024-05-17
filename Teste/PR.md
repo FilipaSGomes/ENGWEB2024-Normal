@@ -1,8 +1,12 @@
 corrigi csv com site: https://csvjson.com/csv2json
 
+$ docker compose up -d
+
 $ docker cp ../Teste/csvjson.json mongo:/tmp
 
-# mongoimport -d contratos -c contratos /tmp/csvjson.json --jsonArray
+$ docker exec -it mongo bash
+
+mongoimport -d contratos -c contratos /tmp/csvjson.json --jsonArray
 
 mongsh
 

@@ -23,7 +23,7 @@ block content
           td= contrato.dataCelebracaoContrato
           td= contrato.precoContratual
           td 
-            a(href='/' + contrato["NIPC_entidade_comunicante"]) #{contrato.nipc_entidade_comunicante}
+            a(href='/entidades/' + contrato["NIPC_entidade_comunicante"]) #{contrato.NIPC_entidade_comunicante}
           td= contrato['entidade_comunicante']
           td
             a(href='/' + contrato["_id"]) Visualizar

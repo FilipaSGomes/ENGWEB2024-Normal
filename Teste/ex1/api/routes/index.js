@@ -2,63 +2,6 @@ var express = require('express');
 var router = express.Router();
 var Contrato = require('../controller/contrato');
 
-// Get all Contratos without repetition
-router.get('/contratos', async (req, res) => {
-  try {
-    const contratos = await Contrato.getAllContratos();
-    res.json(contratos);
-  } catch (error) {
-    console.error('Error obtaining list of contratos:', error);
-    res.status(500).json({ error: 'Internal server error' });
-  }
-});
-
-// Get Contratos by id
-router.get('/contratos/:id', async (req, res) => {
-  try {
-    const contrato = await Contrato.getContratoById(req.params.id);
-    if (!contrato) {
-      return res.status(404).json({ error: 'Contrato not found' });
-    }
-    res.json(contrato);
-  } catch (error) {
-    console.error('Error obtaining contrato:', error);
-    res.status(500).json({ error: 'Internal server error' });
-  }
-});
-
-
-// Get Contratos by entidade_comunicante
-router.get(/\/contratos\?entidade=(.*)/, async (req, res) => {
-  try {
-    var match = text.match(pattern);
-    const contrato = await Contrato.getContratoByEntidade(match[1]);
-    if (!contrato) {
-      return res.status(404).json({ error: 'Contrato not found' });
-    }
-    res.json(contrato);
-  } catch (error) {
-    console.error('Error obtaining contrato:', error);
-    res.status(500).json({ error: 'Internal server error' });
-  }
-} );
-
-// Get Contratos by tipoprocedimento
-router.get(/\/contratos\?tipoprocedimento=(.*)/, async (req, res) => {
-  try {
-    var match = text.match(pattern);
-    const contrato = await Contrato.getContratoByTipoProcedimento(match[1]);
-    if (!contrato) {
-      return res.status(404).json({ error: 'Contrato not found' });
-    }
-    res.json(contrato);
-  } catch (error) {
-    console.error('Error obtaining contrato:', error);
-    res.status(500).json({ error: 'Internal server error' });
-  }
-});
-
-
 // Get all entidade_comunicante without repetition in alphabetical order
 router.get('/contratos/entidades', async (req, res) => {
   try {
@@ -81,6 +24,65 @@ router.get('/contratos/tipos', async (req, res) => {
     res.status(500).json({ error: 'Internal server error' });
   }
 });
+
+// Get all Contratos without repetition
+router.get('/contratos', async (req, res) => {
+  try {
+    const contratos = await Contrato.getAllContratos();
+    res.json(contratos);
+  } catch (error) {
+    console.error('Error obtaining list of contratos:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+// Get Contratos by id
+router.get('/contratos/:id', async (req, res) => {
+  try {
+    const contrato = await Contrato.getContratosById(req.params.id);
+    if (!contrato) {
+      return res.status(404).json({ error: 'Contrato not found' });
+    }
+    res.json(contrato);
+  } catch (error) {
+    console.error('Error obtaining contrato:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+
+// Get Contratos by entidade_comunicante
+router.get(/\/contratos\?entidade=(.*)/, async (req, res) => {
+  try {
+    var match = text.match(pattern);
+    const contrato = await Contrato.getContratosByEntidade(match[1]);
+    if (!contrato) {
+      return res.status(404).json({ error: 'Contrato not found' });
+    }
+    res.json(contrato);
+  } catch (error) {
+    console.error('Error obtaining contrato:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+} );
+
+// Get Contratos by tipoprocedimento
+router.get(/\/contratos\?tipoprocedimento=(.*)/, async (req, res) => {
+  try {
+    var match = text.match(pattern);
+    const contrato = await Contrato.getContratosByTipoProcedimento(match[1]);
+    if (!contrato) {
+      return res.status(404).json({ error: 'Contrato not found' });
+    }
+    res.json(contrato);
+  } catch (error) {
+    console.error('Error obtaining contrato:', error);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+});
+
+
+
 
 // Post Contrato
 router.post('/contratos', async (req, res) => {

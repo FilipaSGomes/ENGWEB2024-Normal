@@ -15,7 +15,7 @@ router.get('/', function(req, res) {
 router.get('/:id', function(req, res) {
   axios.get(`http://localhost:16000/contratos/${req.params.id}`)
     .then( resposta => {
-      res.render('contrato', {title: "Contrato", contrato: resposta.data});
+      res.render('contrato', {title: "Contrato", contrato: resposta.data[0]});
     }).catch( erro => {
       res.render('error', {error: erro, message: "Erro ao recuperar o contrato."})
     })
